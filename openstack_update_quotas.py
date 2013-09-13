@@ -10,7 +10,7 @@ If the two numbers are different the value in the column "in_use" of the table q
 This will force an update of the table as soon as a new VM is created for that project.
 The scope of this scritp is to correct a well known bug reported in Folsom.
 The VMs created by a specific user that are deleted by an amministrator don't trigger the update of the quotas in the database.
- 
+To use this script you should create a mysql user that has both read and write rights. 
 '''
 
 from openstack_accounting_per_project import openstack_accounting_per_project as o_a_p
