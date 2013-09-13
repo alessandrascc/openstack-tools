@@ -28,7 +28,8 @@ def main():
   """ List of Project IDs associated to their project names """
   projectid_mapping = _scanner.prepareProjectMapping()
   
-  """ Collect info on the usage from the table quota_usages in nova database
+  """ 
+      Collect info on the usage from the table quota_usages in nova database
       The database has a line for each used resource with is corresponding value
       The obtained list needs to be formatted to a dict to be esier to handle
   """
@@ -43,13 +44,15 @@ def main():
   for key in instance_mapping:
         quota = usage_mapping[key].index("instances")
         
-        """ Other bug: What happens with VM can happen with project as well. The database might return a project listed as active which is instead deleted.
+        """ 
+            Other bug: What happens with VM can happen with project as well. The database might return a project listed as active which is instead deleted.
             If that's the case a warning message is generated.
         """
         if key in projectid_mapping:
           instance_index=quota+1
 
-          """ Search for mismatch:
+          """ 
+              Search for mismatch:
               project[key] != 'admin' : The project 'admin' doesn't need to be checked
               usage_mapping[key][instance_index]!=-1 : It has been reset last time than the script was. No need to be checked
               usage_mapping[key][instance_index]!=instance_mapping[key][1]: returns the mismatch
